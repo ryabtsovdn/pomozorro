@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "PomoZorro",
+  "version": "1.0",
+  "description": "Just yet another pomodoro timer",
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png",
+    "256": "icon.png"
+  }
+}
