@@ -15,6 +15,7 @@ const renderTask = (id) => {
   taskElement.id = id;
 
   const taskTitle = document.createElement("input");
+  taskTitle.classList.add("task-title");
   taskTitle.type = "text";
   taskTitle.name = "task-title";
   taskTitle.placeholder = "Enter a task name";
@@ -25,9 +26,10 @@ const renderTask = (id) => {
   });
 
   const removeBtn = document.createElement("input");
+  removeBtn.classList.add("task-remove");
   removeBtn.type = "button";
   removeBtn.name = "remove-btn";
-  removeBtn.value = "X";
+  removeBtn.value = "×";
   removeBtn.addEventListener("click", () => {
     removeTask(id);
     saveTasks();
