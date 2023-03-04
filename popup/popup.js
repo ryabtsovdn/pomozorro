@@ -1,5 +1,3 @@
-const DEFAULT_INTERVAL = 25 * 60;
-
 const taskContainer = document.getElementById("tasks");
 const addTaskBtn = document.getElementById("add-task-btn");
 const startBtn = document.getElementById("start-btn");
