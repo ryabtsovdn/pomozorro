@@ -17,5 +17,6 @@
     },
     "default_title": "PomoZorro",
     "default_popup": "popup/popup.html"
-  }
+  },
+  "permissions": ["storage"]
 }
