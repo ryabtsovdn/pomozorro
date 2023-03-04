@@ -1,5 +1,10 @@
+const DEFAULT_INTERVAL = 25 * 60;
+
 const taskContainer = document.getElementById("tasks");
 const addTaskBtn = document.getElementById("add-task-btn");
+const startBtn = document.getElementById("start-btn");
+const resetBtn = document.getElementById("reset-btn");
+const timeElement = document.getElementById("time");
 
 let tasks;
 
@@ -57,11 +62,80 @@ const saveTasks = () => {
   });
 };
 
+const updateStartBtnTitle = (isRunning) => {
+  const nextAction = isRunning ? "Stop" : "Start";
+  startBtn.textContent = `${nextAction} timer`;
+};
+
+const resetTimer = () => {
+  chrome.storage.local.set(
+    {
+      timer: 0,
+      isRunning: false,
+    },
+    () => {
+      updateStartBtnTitle(false);
+    }
+  );
+};
+
+const getTimeLeft = (timePassed, initial = DEFAULT_INTERVAL) => {
+  return initial - timePassed;
+};
+
+const formatTime = (value) => {
+  const timeLeft = Number(value);
+
+  if (timeLeft <= 0) {
+    resetTimer();
+    return;
+  }
+
+  const minutes = `0${Math.floor(timeLeft / 60)}`.slice(-2);
+  const seconds = `0${timeLeft - minutes * 60}`.slice(-2);
+
+  return `${minutes}:${seconds}`;
+};
+
+const updateTime = (value) => {
+  timeElement.textContent = formatTime(getTimeLeft(value));
+};
+
 addTaskBtn.addEventListener("click", () => {
   addNewTask();
+});
+
+startBtn.addEventListener("click", () => {
+  chrome.storage.local.get(["isRunning"], (res) => {
+    chrome.storage.local.set(
+      {
+        isRunning: !res.isRunning,
+      },
+      () => {
+        updateStartBtnTitle(!res.isRunning);
+      }
+    );
+  });
+});
+
+resetBtn.addEventListener("click", () => {
+  resetTimer();
+});
+
+chrome.storage.local.get(["timer", "isRunning"], (res) => {
+  updateStartBtnTitle(res.isRunning);
+  updateTime(res.timer);
 });
 
 chrome.storage.sync.get(["tasks"], (res) => {
   tasks = res.tasks ?? {};
   renderTasks();
+});
+
+chrome.storage.onChanged.addListener((changes) => {
+  const { timer: { newValue, oldValue } = {} } = changes;
+
+  if (newValue !== oldValue) {
+    updateTime(newValue);
+  }
 });
