@@ -79,10 +79,6 @@ const resetTimer = () => {
   );
 };
 
-const getTimeLeft = (timePassed, initial = DEFAULT_INTERVAL) => {
-  return initial - timePassed;
-};
-
 const formatTime = (value) => {
   const timeLeft = Number(value);
 
@@ -98,7 +94,14 @@ const formatTime = (value) => {
 };
 
 const updateTime = (value) => {
-  timeElement.textContent = formatTime(getTimeLeft(value));
+  chrome.storage.local.get(["options"], (res) => {
+    const {
+      options: { interval },
+    } = res;
+    const timeLeft = interval * 60 - value;
+
+    timeElement.textContent = formatTime(timeLeft);
+  });
 };
 
 addTaskBtn.addEventListener("click", () => {
