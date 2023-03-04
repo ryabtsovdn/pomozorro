@@ -10,14 +10,20 @@
 </head>
 
 <body>
-    <h1>PomoZorro Extension Options</h1>
+    <main class="main">
+        <h1>PomoZorro Extension Options</h1>
 
-    <label>
-        Timer interval in minutes (1-60):
-        <input id="timer-interval" type="number" min="1" max="60">
-    </label>
+        <div class="options">
+            <label class="option">
+                Timer interval in minutes (1-60):
+                <input class="option-input" id="timer-interval" type="number" min="1" max="60">
+            </label>
+        </div>
 
-    <button id="save-options-btn">Save changes</button>
+        <div class="bottom">
+            <button class="bottom-save" id="save-options-btn">Save changes</button>
+        </div>
+    </main>
 </body>
 
 <script src="options.js"></script>
