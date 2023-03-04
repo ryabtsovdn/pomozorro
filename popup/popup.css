@@ -1,0 +1,121 @@
+:root {
+    --bg-primary: #efb560;
+    --bg-secondary: #dc9852;
+    --text-primary: #474d4f;
+    --text-secondary: #707271;
+    --color-grey-dark: #b7b39f;
+    --color-grey-light: #d3ddda;
+    --font-size-xxs: 12px;
+    --font-size-xs: 14px;
+    --font-size-sm: 16px;
+    --font-size: 18px;
+    --font-size-md: 20px;
+    --font-size-lg: 24px;
+    --font-size-xl: 32px;
+    --font-size-xxl: 48px;
+}
+
+body {
+    width: 350px;
+    min-height: 350px;
+    max-height: 600px;
+    padding: 8px;
+    margin: 4px;
+    background-color: var(--bg-secondary);
+}
+
+* {
+    font-size: var(--font-size);
+    line-height: 1.5;
+    color: var(--text-primary);
+}
+
+h1 {
+    font-size: var(--font-size-xxl);
+}
+
+h2 {
+    font-size: var(--font-size-xl);
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    height: 40px;
+    margin: -12px;
+    padding: 8px;
+    background-color: var(--bg-primary);
+}
+
+.time {
+    text-align: center;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 8px;
+}
+
+.buttons button {
+    padding: 8px;
+    font-size: var(--font-size-md);
+    font-weight: 600;
+    color: var(--text-secondary);
+    background-color: var(--bg-primary);
+    box-shadow: 0 0 4px 2px var(--color-grey-dark);
+    border: 1px solid var(--color-grey-light);
+    border-radius: 8px;
+    outline: none;
+    cursor: pointer;
+    transition: all 300ms ease;
+}
+
+.buttons button:hover {
+    border: 1px solid transparent;
+    box-shadow: 0 0 8px 4px var(--color-grey-dark);
+}
+
+.tasks {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px;
+}
+
+.task {
+    display: flex;
+    align-items: center;
+}
+
+.task-title {
+    flex-grow: 1;
+    margin: 0 8px 0 0;
+    padding: 4px 8px;
+    box-shadow: 0 0 4px 2px var(--bg-primary);
+    border: 1px solid transparent;
+    border-radius: 4px;
+    outline: none;
+}
+
+.task-remove {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 36px;
+    height: 36px;
+    margin-left: auto;
+    background-color: var(--bg-primary);
+    border: none;
+    border-radius: 4px;
+    font-size: var(--font-size-xl);
+    line-height: var(--font-size-xl);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 300ms ease;
+}
+
+.task-remove:hover {
+    box-shadow: 0 0 1px 2px var(--bg-primary);
+}
